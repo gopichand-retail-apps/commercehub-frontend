@@ -45,3 +45,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local deployment metadata and private environment overrides
+.vercel/
+.env
+.env.*
+!.env.vercel.example
+*.log
+.next-*/
