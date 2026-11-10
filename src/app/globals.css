@@ -1,0 +1,8 @@
+@import "./styles/base.css";
+@import "./styles/storefront.css";
+@import "./styles/catalog.css";
+@import "./styles/cart.css";
+@import "./styles/editorial.css";
+@import "./styles/dialogs.css";
+@import "./styles/privacy.css";
+@import "./styles/responsive.css";

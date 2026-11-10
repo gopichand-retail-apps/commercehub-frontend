@@ -1,0 +1,73 @@
+name: CommerceHub Frontend CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: commercehub-frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Set up Java for isolated API tests
+        uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Test synthetic identity sources
+        run: npm run test:identity
+
+      - name: Test application source coverage
+        run: npm run test:unit
+
+      - name: End-to-end test (mock API)
+        run: npm run test:e2e
+
+      - name: End-to-end test (live API selection)
+        env:
+          NEXT_PUBLIC_IS_MOCK: "false"
+        run: npm run test:e2e
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          COMMERCEHUB_MOCK_API_URL: https://commerce-api.example.test
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev

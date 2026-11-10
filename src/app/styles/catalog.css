@@ -1,0 +1,357 @@
+.collection-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 88px clamp(22px, 5vw, 76px) 94px;
+}
+
+.collection-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 36px;
+  margin-bottom: 34px;
+}
+
+.collection-heading h2 {
+  margin-top: 10px;
+  font-size: 44px;
+}
+
+.collection-intro {
+  max-width: 350px;
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.catalog-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.category-tabs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab {
+  min-height: 40px;
+  flex: 0 0 auto;
+  padding: 0 11px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.category-tab:hover,
+.category-tab.is-active {
+  color: var(--ink);
+}
+
+.category-tab.is-active {
+  border-bottom-color: var(--forest);
+  font-weight: 700;
+}
+
+.catalog-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.search-control,
+.sort-control {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.search-control input {
+  width: 155px;
+  padding: 8px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.search-control input::placeholder {
+  color: #7d877f;
+}
+
+.search-control input:focus-visible {
+  outline: 0;
+}
+
+.search-control:focus-within {
+  outline: 2px solid #ba4e3e;
+  outline-offset: 3px;
+}
+
+.clear-search {
+  display: inline-flex;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sort-control {
+  position: relative;
+  border-left: 1px solid var(--line);
+  padding-left: 13px;
+}
+
+.sort-control select {
+  appearance: none;
+  padding: 8px 19px 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.sort-control svg {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+}
+
+.collection-meta {
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.price-refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--coral);
+  animation: status-pulse 1.2s ease-in-out infinite;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+.product-card {
+  min-width: 0;
+  background: var(--white);
+  border: 1px solid #e6e9e3;
+}
+
+.product-image-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: #e3e8e1;
+  text-align: left;
+  cursor: pointer;
+}
+
+.product-image-wrap {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 4.65;
+  overflow: hidden;
+  background: #e3e8e1;
+}
+
+.product-image {
+  object-fit: cover;
+  transition: transform 320ms ease;
+}
+
+.product-image-button:hover .product-image {
+  transform: scale(1.035);
+}
+
+.product-category,
+.product-featured {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.93);
+  color: var(--ink);
+  font-size: 9px;
+}
+
+.product-featured {
+  left: auto;
+  right: 12px;
+  background: var(--lime);
+}
+
+.product-view {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(3px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.product-image-button:hover .product-view,
+.product-image-button:focus-visible .product-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card-copy {
+  padding: 14px 14px 12px;
+}
+
+.product-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.product-card-heading h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.product-card-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.product-card-heading > strong {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.product-card-bottom {
+  min-height: 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stock-note {
+  color: #637568;
+  font-size: 9px;
+}
+
+.stock-note.is-low {
+  color: #a64e3d;
+}
+
+.add-button,
+.icon-button {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color 140ms ease,
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.add-button:hover:not(:disabled),
+.icon-button:hover {
+  border-color: var(--forest);
+  background: var(--forest);
+  color: var(--white);
+}
+
+.add-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.product-skeleton {
+  aspect-ratio: 4 / 5.3;
+  background: linear-gradient(100deg, #e6eae3 20%, #f5f6f2 40%, #e6eae3 60%);
+  background-size: 200% 100%;
+  animation: skeleton-sheen 1.4s linear infinite;
+}
+
+.catalog-state {
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.catalog-state-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--forest);
+}
+
+.catalog-state h3 {
+  margin: 15px 0 0;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.catalog-state p {
+  margin: 8px 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+}
