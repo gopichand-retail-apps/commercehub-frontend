@@ -33,8 +33,7 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-          cache: maven
-
+          
       - name: Install locked dependencies
         run: npm ci
 
