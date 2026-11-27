@@ -33,9 +33,16 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-          
+
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Check out the matching backend for end-to-end tests
+        run: |
+          repo=https://github.com/gopichand-retail-apps/commercehub-backend.git
+          ref="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+          git ls-remote --exit-code --heads "$repo" "$ref" > /dev/null || ref=main
+          git clone --depth 1 --branch "$ref" "$repo" ../commercehub-backend
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
